@@ -20,8 +20,8 @@ A modern end-to-end testing framework built with Playwright, supporting multiple
 
 1. Clone the repository:
 ```bash
-git clone <your-repository-url>
-cd playwright
+git clone https://github.com/OlgaGogo/Playwright.git
+cd Playwright
 ```
 
 2. Install dependencies:

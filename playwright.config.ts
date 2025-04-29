@@ -10,7 +10,7 @@ import baseEnvUrl from './utils/environmentBaseUrl';
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  // testDir: './tests',
+  testDir: './tests',
 
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -72,43 +72,23 @@ export default defineConfig({
       name: 'chromium',
       use: { 
         ...devices['Desktop Chrome'],
-        // viewport: { width: 1280, height: 720 },
+        baseURL: 'https://playwright.dev/',
       },
     },
-
     {
       name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },
-
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    },
-
-    {
-      name: 'all-browsers-and-tests',
       use: { 
+        ...devices['Desktop Firefox'],
         baseURL: 'https://playwright.dev/',
-         ...devices['Desktop Chrome']
       },
     },
-
-    // {
-    //   name: 'all-browsers-and-tests',
-    //   use: { 
-    //     baseURL: 'https://playwright.dev/',
-    //      ...devices['Desktop Safari']
-    //   },
-    // },
-
-    // {
-    //   name: 'all-browsers-and-tests',
-    //   use: { 
-    //     baseURL: 'https://playwright.dev/',
-    //      ...devices['Desktop Firefox']
-    //   },
-    // },
+    {
+      name: 'webkit',
+      use: { 
+        ...devices['Desktop Safari'],
+        baseURL: 'https://playwright.dev/',
+      },
+    },
 
     // Example only
     {
@@ -122,14 +102,8 @@ export default defineConfig({
     {
       name: 'ci',
       use: { 
-         baseURL: process.env.CI
-          ? baseEnvUrl.ci.prefix + process.env.GITHUB_REF_NAME + baseEnvUrl.ci.suffix //https://dev-myapp-chapter-2.mydomain.com
-          : baseEnvUrl.staging.home,
+         baseURL: 'https://playwright.dev/',
       },
-      /**
-       * GitHub variables: https://docs.github.com/en/actions/learn-github-actions/variables
-       * GitLab variables: https://docs.gitlab.com/ee/ci/variables/predefined_variables.html#predefined-variables-reference
-       */
     },
 
     /* Test against mobile viewports. */
